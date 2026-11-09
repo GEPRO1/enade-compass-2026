@@ -102,7 +102,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <CommandEmpty>Nenhum termo encontrado.</CommandEmpty>
           <CommandGroup heading="Termos-chave">
             {index.map((h, i) => (
-              <CommandItem key={i} value={`${h.title} ${h.desc}`} onSelect={() => { setOpen(false); navigate({ to: h.to, hash: h.hash }); }}>
+              <CommandItem key={i} value={`${h.title} ${h.desc}`} onSelect={() => { setOpen(false); navigate(h.hash ? { to: h.to, hash: h.hash } : { to: h.to }); }}>
                 <div><p className="font-medium">{h.title}</p><p className="line-clamp-1 text-xs text-muted-foreground">{h.desc}</p></div>
               </CommandItem>
             ))}
