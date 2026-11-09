@@ -42,6 +42,7 @@ function Index() {
         <p className="text-xs font-semibold uppercase tracking-widest opacity-80">UFC · Campus Russas · GEPRO</p>
         <h1 className="mt-2 max-w-2xl font-display text-3xl font-semibold leading-tight md:text-5xl">Aprenda a gabaritar o ENADE sem enrolação</h1>
         <p className="mt-3 max-w-xl opacity-90">Formação Geral em Engenharia de Produção — a cartilha de Marcela Costa Araújo, Érica Freire da Silva e Emerson Rodrigues Sabino, agora interativa.</p>
+        <a href="https://github.com/geproufc/enade/blob/main/ebook_1enade2026.pdf" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center rounded-lg bg-background/15 px-4 py-2 text-sm font-semibold backdrop-blur hover:bg-background/25">📘 Ler a cartilha completa (PDF)</a>
         <p className="mt-5 font-display text-lg italic opacity-95">“O básico bem feito é o que funciona. Leia com propósito, argumente com evidência.”</p>
         <div className="mt-6 grid max-w-md grid-cols-4 gap-2">
           {(["d", "h", "m", "s"] as const).map((k) => (
