@@ -20,7 +20,7 @@ export const Route = createFileRoute("/esg")({
 function Esg() {
   const [pilar, setPilar] = useState(0);
   const [step, setStep] = useState(0);
-  const active = esg[pilar];
+  const active = esg[pilar]!;
   return (
     <div className="space-y-10">
       <PageTitle kicker="Sustentabilidade" title="ESG, economia circular & ODS" desc="Toque em um pilar para ver os objetos de conhecimento relacionados." />
@@ -63,7 +63,7 @@ function Esg() {
             </button>
           ))}
         </div>
-        <p className="mt-3 rounded-lg bg-secondary/10 p-4">{circular[step].t}</p>
+        <p className="mt-3 rounded-lg bg-secondary/10 p-4">{circular[step]!.t}</p>
       </section>
 
       <section>

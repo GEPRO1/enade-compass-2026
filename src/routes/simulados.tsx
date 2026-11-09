@@ -36,7 +36,7 @@ function Simulados() {
   const [done, setDone] = useState<number | null>(null);
 
   const finish = (r = resp) => {
-    const acertos = r.filter((x, k) => x === questoes[k].correta).length;
+    const acertos = r.filter((x, k) => x === questoes[k]!.correta).length;
     updateProgress((s) => ({ ...s, historico: [{ data: new Date().toISOString(), acertos, total: questoes.length, tempo: Math.round((Date.now() - start) / 1000) }, ...s.historico].slice(0, 20) }));
     setDone(acertos); setRunning(false);
   };
@@ -81,7 +81,7 @@ function Simulados() {
     );
   }
 
-  const q = questoes[i];
+  const q = questoes[i]!;
   const a = resp[i];
   const answered = a !== null;
   return (

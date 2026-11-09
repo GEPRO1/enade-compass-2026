@@ -24,7 +24,7 @@ const bars = [952, 960, 958, 971, 985, 998];
 function Estrategia() {
   const [sel, setSel] = useState(0);
   const [real, setReal] = useState(false);
-  const v = verbos[sel];
+  const v = verbos[sel]!;
   const min = real ? 0 : 950, max = 1000;
   return (
     <div>
