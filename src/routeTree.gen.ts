@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EsgRouteImport } from './routes/esg'
+import { Route as EstrategiaRouteImport } from './routes/estrategia'
+import { Route as SimuladosRouteImport } from './routes/simulados'
+import { Route as TrilhasRouteImport } from './routes/trilhas'
+import { Route as VesperaRouteImport } from './routes/vespera'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EsgRoute = EsgRouteImport.update({
+  id: '/esg',
+  path: '/esg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstrategiaRoute = EstrategiaRouteImport.update({
+  id: '/estrategia',
+  path: '/estrategia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SimuladosRoute = SimuladosRouteImport.update({
+  id: '/simulados',
+  path: '/simulados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrilhasRoute = TrilhasRouteImport.update({
+  id: '/trilhas',
+  path: '/trilhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VesperaRoute = VesperaRouteImport.update({
+  id: '/vespera',
+  path: '/vespera',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/esg': typeof EsgRoute
+  '/estrategia': typeof EstrategiaRoute
+  '/simulados': typeof SimuladosRoute
+  '/trilhas': typeof TrilhasRoute
+  '/vespera': typeof VesperaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/esg': typeof EsgRoute
+  '/estrategia': typeof EstrategiaRoute
+  '/simulados': typeof SimuladosRoute
+  '/trilhas': typeof TrilhasRoute
+  '/vespera': typeof VesperaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/esg': typeof EsgRoute
+  '/estrategia': typeof EstrategiaRoute
+  '/simulados': typeof SimuladosRoute
+  '/trilhas': typeof TrilhasRoute
+  '/vespera': typeof VesperaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/esg' | '/estrategia' | '/simulados' | '/trilhas' | '/vespera'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/esg' | '/estrategia' | '/simulados' | '/trilhas' | '/vespera'
+  id:
+    | '__root__'
+    | '/'
+    | '/esg'
+    | '/estrategia'
+    | '/simulados'
+    | '/trilhas'
+    | '/vespera'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EsgRoute: typeof EsgRoute
+  EstrategiaRoute: typeof EstrategiaRoute
+  SimuladosRoute: typeof SimuladosRoute
+  TrilhasRoute: typeof TrilhasRoute
+  VesperaRoute: typeof VesperaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/esg': {
+      id: '/esg'
+      path: '/esg'
+      fullPath: '/esg'
+      preLoaderRoute: typeof EsgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estrategia': {
+      id: '/estrategia'
+      path: '/estrategia'
+      fullPath: '/estrategia'
+      preLoaderRoute: typeof EstrategiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/simulados': {
+      id: '/simulados'
+      path: '/simulados'
+      fullPath: '/simulados'
+      preLoaderRoute: typeof SimuladosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trilhas': {
+      id: '/trilhas'
+      path: '/trilhas'
+      fullPath: '/trilhas'
+      preLoaderRoute: typeof TrilhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vespera': {
+      id: '/vespera'
+      path: '/vespera'
+      fullPath: '/vespera'
+      preLoaderRoute: typeof VesperaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EsgRoute: EsgRoute,
+  EstrategiaRoute: EstrategiaRoute,
+  SimuladosRoute: SimuladosRoute,
+  TrilhasRoute: TrilhasRoute,
+  VesperaRoute: VesperaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
