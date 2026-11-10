@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { overallPercent } from "@/lib/progress";
-import { checklist, eixos, ENADE_DATE, ENADE_EXAM_LABEL } from "@/lib/content";
+import { checklist, eixos, ENADE_DATE, ENADE_EXAM_LABEL, questoes } from "@/lib/content";
 
 describe("ENADE date", () => {
   it("is the exam day 29/11/2026 with prova at 13:30 Brasília", () => {
