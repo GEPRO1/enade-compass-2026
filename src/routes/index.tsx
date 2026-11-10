@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
 });
 
 const ALARM_KEY = "enade-alarm-on";
-export const ALARM_MESSAGE = "11:00 — hora de entrar no local de prova";
+export const ALARM_MESSAGE = "11:00 — 1 h para a abertura dos portões (12:00)";
 
 function playAlarmTone() {
   try {
@@ -51,7 +51,7 @@ function fireAlarm() {
   if (typeof Notification !== "undefined" && Notification.permission === "granted") {
     try {
       new Notification("⏰ " + ALARM_MESSAGE, {
-        body: "A prova começa às 12:00 (horário de Brasília).",
+        body: "Portões: 12:00–13:00. Prova: 13:30 (horário de Brasília).",
       });
     } catch {
       /* notificação indisponível */
@@ -132,13 +132,13 @@ function Index() {
             </div>
           ))}
         </div>
-        <p className="mt-3 flex items-center gap-1 text-xs opacity-80"><Clock className="h-3 w-3" /> Prova: {ENADE_EXAM_LABEL} — o alarme toca 1 h antes, às 11:00</p>
+        <p className="mt-3 flex items-center gap-1 text-xs opacity-80"><Clock className="h-3 w-3" /> Prova: {ENADE_EXAM_LABEL} · portões 12:00–13:00 — o alarme toca às 11:00, 1 h antes da chegada</p>
         {c?.over ? (
           <div className="mt-4 flex max-w-md items-center gap-3 rounded-xl border-2 border-destructive bg-destructive p-4 text-destructive-foreground">
             <BellRing className="h-6 w-6 shrink-0" />
             <div>
               <p className="font-display text-lg font-semibold">{ALARM_MESSAGE}</p>
-              <p className="text-sm opacity-90">A prova começa às 12:00 (horário de Brasília).</p>
+              <p className="text-sm opacity-90">Portões: 12:00–13:00 (sem entrada após o fechamento). Prova: 13:30 (horário de Brasília).</p>
             </div>
           </div>
         ) : (
