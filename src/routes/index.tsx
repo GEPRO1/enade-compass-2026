@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, Clock } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Bell, BellRing, BookOpen, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,45 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const ALARM_KEY = "enade-alarm-on";
+export const ALARM_MESSAGE = "11:00 — hora de entrar no local de prova";
+
+function playAlarmTone() {
+  try {
+    const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const ctx = new Ctx();
+    [880, 660, 880, 660].forEach((f, i) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = "square";
+      o.frequency.value = f;
+      o.connect(g);
+      g.connect(ctx.destination);
+      const t0 = ctx.currentTime + i * 0.32;
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(0.22, t0 + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.28);
+      o.start(t0);
+      o.stop(t0 + 0.3);
+    });
+  } catch {
+    /* áudio indisponível */
+  }
+}
+
+function fireAlarm() {
+  playAlarmTone();
+  if (typeof Notification !== "undefined" && Notification.permission === "granted") {
+    try {
+      new Notification("⏰ " + ALARM_MESSAGE, {
+        body: "A prova começa às 12:00 (horário de Brasília).",
+      });
+    } catch {
+      /* notificação indisponível */
+    }
+  }
+}
+
 function useCountdown() {
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
@@ -29,13 +68,54 @@ function useCountdown() {
   }, []);
   if (now === null) return null;
   const diff = Math.max(0, new Date(ENADE_DATE).getTime() - now);
-  return { d: Math.floor(diff / 864e5), h: Math.floor(diff / 36e5) % 24, m: Math.floor(diff / 6e4) % 60, s: Math.floor(diff / 1e3) % 60 };
+  return {
+    d: Math.floor(diff / 864e5),
+    h: Math.floor(diff / 36e5) % 24,
+    m: Math.floor(diff / 6e4) % 60,
+    s: Math.floor(diff / 1e3) % 60,
+    over: diff === 0,
+  };
 }
 
 function Index() {
   const c = useCountdown();
   const p = useProgress();
   const pct = overallPercent(p);
+  const [alarmOn, setAlarmOn] = useState(false);
+  const fired = useRef(false);
+
+  useEffect(() => {
+    try {
+      setAlarmOn(localStorage.getItem(ALARM_KEY) === "on");
+    } catch {
+      /* armazenamento indisponível */
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!c?.over || fired.current) return;
+    fired.current = true;
+    fireAlarm();
+  }, [c?.over]);
+
+  function armAlarm() {
+    try {
+      localStorage.setItem(ALARM_KEY, "on");
+    } catch {
+      /* armazenamento indisponível */
+    }
+    setAlarmOn(true);
+    playAlarmTone();
+    // notificações são opcionais: pedimos em segundo plano para não travar o alarme
+    if (typeof Notification !== "undefined" && Notification.permission === "default") {
+      try {
+        void Notification.requestPermission();
+      } catch {
+        /* permissão indisponível */
+      }
+    }
+  }
+
   return (
     <div className="space-y-6">
       <section className="bg-hero overflow-hidden rounded-2xl p-6 text-primary-foreground md:p-10">
@@ -52,7 +132,25 @@ function Index() {
             </div>
           ))}
         </div>
-        <p className="mt-3 flex items-center gap-1 text-xs opacity-80"><Clock className="h-3 w-3" /> Prova: {ENADE_EXAM_LABEL} — a contagem encerra 1 h antes, às 11:00</p>
+        <p className="mt-3 flex items-center gap-1 text-xs opacity-80"><Clock className="h-3 w-3" /> Prova: {ENADE_EXAM_LABEL} — o alarme toca 1 h antes, às 11:00</p>
+        {c?.over ? (
+          <div className="mt-4 flex max-w-md items-center gap-3 rounded-xl border-2 border-destructive bg-destructive p-4 text-destructive-foreground">
+            <BellRing className="h-6 w-6 shrink-0" />
+            <div>
+              <p className="font-display text-lg font-semibold">{ALARM_MESSAGE}</p>
+              <p className="text-sm opacity-90">A prova começa às 12:00 (horário de Brasília).</p>
+            </div>
+          </div>
+        ) : (
+          <Button
+            onClick={armAlarm}
+            variant="outline"
+            className="mt-4 border-background/40 bg-background/15 text-primary-foreground backdrop-blur hover:bg-background/25"
+          >
+            <Bell className="mr-2 h-4 w-4" />
+            {alarmOn ? "Alarme das 11:00 ativado" : "Ativar alarme das 11:00"}
+          </Button>
+        )}
       </section>
 
       <Card>

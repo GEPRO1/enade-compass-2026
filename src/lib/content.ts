@@ -14,7 +14,7 @@ export const checklist = [
   { id: "c6", group: "Documentos", text: "Cartão de confirmação de inscrição impresso ou no celular" },
   { id: "c7", group: "Documentos", text: "Conferir o local de prova e o trajeto com antecedência" },
   { id: "c8", group: "Material", text: "Caneta esferográfica de tinta preta, de material transparente" },
-  { id: "c9", group: "Material", text: "Sair de casa com folga — chegar antes das 12:00" },
+  { id: "c9", group: "Material", text: "Sair de casa com folga — estar no local de prova até as 11:00" },
 ];
 
 export const verbos = [
@@ -138,7 +138,7 @@ export const glossario = [
   { termo: "Economia Circular", def: "Modelo que mantém materiais em uso pelo maior tempo possível, contra o modelo linear extrair–produzir–descartar.", to: "/esg" },
   { termo: "Fato, opinião, tese e evidência", def: "Elementos da argumentação discursiva.", to: "/estrategia" },
   { termo: "Verbos de comando", def: "Identifique, Explique, Compare, Analise, Proponha, Discuta.", to: "/estrategia" },
-  { termo: "Portões 13:00", def: "Os portões fecham às 13:00, horário de Brasília.", to: "/vespera" },
+  { termo: "Alarme das 11:00", def: "A prova começa às 12:00; o alarme toca 1 h antes, às 11:00, para você entrar no local de prova.", to: "/vespera" },
   { termo: "Caneta preta", def: "Leve caneta esferográfica de tinta preta, de material transparente.", to: "/vespera" },
 ];
 
