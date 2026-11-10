@@ -1,9 +1,10 @@
 // Conteúdo baseado na cartilha "Aprenda a gabaritar o ENADE sem enrolação" (GEPRO / UFC Russas, 2026)
 
-// Prova: 29/11/2026 às 12:00 (horário de Brasília, UTC-3).
-// A contagem regressiva encerra 1 h antes, às 11:00.
+// Dia da prova: 29/11/2026 (horário de Brasília, UTC-3).
+// Portões: abrem 12:00, fecham 13:00 (sem entrada após). Prova: 13:30, duração 4 h.
+// Chegada recomendada: 12:00. A contagem regressiva e o alarme disparam às 11:00, 1 h antes da chegada.
 export const ENADE_DATE = "2026-11-29T11:00:00-03:00";
-export const ENADE_EXAM_LABEL = "29/11/2026, 12:00 (Brasília)";
+export const ENADE_EXAM_LABEL = "29/11/2026, 13:30 (Brasília)";
 
 export const checklist = [
   { id: "c1", group: "Alimentação", text: "Jantar leve na véspera e café da manhã reforçado" },
@@ -14,7 +15,7 @@ export const checklist = [
   { id: "c6", group: "Documentos", text: "Cartão de confirmação de inscrição impresso ou no celular" },
   { id: "c7", group: "Documentos", text: "Conferir o local de prova e o trajeto com antecedência" },
   { id: "c8", group: "Material", text: "Caneta esferográfica de tinta preta, de material transparente" },
-  { id: "c9", group: "Material", text: "Sair de casa com folga — estar no local de prova até as 11:00" },
+  { id: "c9", group: "Material", text: "Sair de casa com folga — estar no local de prova às 12:00, quando abrem os portões (fecham às 13:00, sem tolerância)" },
 ];
 
 export const verbos = [
@@ -138,7 +139,8 @@ export const glossario = [
   { termo: "Economia Circular", def: "Modelo que mantém materiais em uso pelo maior tempo possível, contra o modelo linear extrair–produzir–descartar.", to: "/esg" },
   { termo: "Fato, opinião, tese e evidência", def: "Elementos da argumentação discursiva.", to: "/estrategia" },
   { termo: "Verbos de comando", def: "Identifique, Explique, Compare, Analise, Proponha, Discuta.", to: "/estrategia" },
-  { termo: "Alarme das 11:00", def: "A prova começa às 12:00; o alarme toca 1 h antes, às 11:00, para você entrar no local de prova.", to: "/vespera" },
+  { termo: "Alarme das 11:00", def: "Os portões abrem às 12:00 e fecham às 13:00; a prova começa às 13:30. O alarme toca às 11:00, 1 h antes da chegada recomendada (12:00).", to: "/vespera" },
+  { termo: "Horários do dia da prova", def: "Portões: 12:00–13:00 (pontual, sem entrada após o fechamento). Prova: 13:30, com 4 h de duração. Permanência mínima: 2 h. Caderno de questões: só a partir de 1 h antes do término.", to: "/vespera" },
   { termo: "Caneta preta", def: "Leve caneta esferográfica de tinta preta, de material transparente.", to: "/vespera" },
 ];
 
