@@ -3,8 +3,10 @@ import { overallPercent } from "@/lib/progress";
 import { checklist, eixos, ENADE_DATE, ENADE_EXAM_LABEL } from "@/lib/content";
 
 describe("ENADE date", () => {
-  it("is the exam day 29/11/2026 at 12:00 Brasília", () => {
-    expect(ENADE_EXAM_LABEL).toBe("29/11/2026, 12:00 (Brasília)");
+  it("is the exam day 29/11/2026 with prova at 13:30 Brasília", () => {
+    expect(ENADE_EXAM_LABEL).toBe("29/11/2026, 13:30 (Brasília)");
+  });
+  it("fires the alarm at 11:00, 1 h before the 12:00 gate opening", () => {
     expect(new Date("2026-11-29T12:00:00-03:00").getTime() - new Date(ENADE_DATE).getTime()).toBe(3600000);
   });
 });
