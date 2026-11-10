@@ -1,7 +1,9 @@
 // Conteúdo baseado na cartilha "Aprenda a gabaritar o ENADE sem enrolação" (GEPRO / UFC Russas, 2026)
 
-// Data assumida para o ENADE 2026 (domingo); portões fecham às 13:00 (Brasília, UTC-3).
-export const ENADE_DATE = "2026-11-22T13:00:00-03:00";
+// Prova: 29/11/2026 às 12:00 (horário de Brasília, UTC-3).
+// A contagem regressiva encerra 1 h antes, às 11:00.
+export const ENADE_DATE = "2026-11-29T11:00:00-03:00";
+export const ENADE_EXAM_LABEL = "29/11/2026, 12:00 (Brasília)";
 
 export const checklist = [
   { id: "c1", group: "Alimentação", text: "Jantar leve na véspera e café da manhã reforçado" },
