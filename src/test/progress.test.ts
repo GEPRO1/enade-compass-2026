@@ -11,6 +11,19 @@ describe("ENADE date", () => {
   });
 });
 
+describe("questões oficiais da cartilha", () => {
+  it("keeps the two fixação questions with the cartilha answers C and B", () => {
+    const oficiais = questoes.filter((q) => q.fonte === "Cartilha GEPRO/UFC");
+    expect(oficiais).toHaveLength(2);
+    const ciclovias = questoes.find((q) => q.id === "q9")!;
+    expect(ciclovias.correta).toBe(2);
+    expect(ciclovias.alternativas[2]).toContain("equidade no acesso à cidade");
+    const vieses = questoes.find((q) => q.id === "q10")!;
+    expect(vieses.correta).toBe(1);
+    expect(vieses.alternativas[1]).toContain("auditorias de dados");
+  });
+});
+
 describe("overallPercent", () => {
   it("is 0 with nothing done", () => {
     expect(overallPercent({ checklist: [], eixos: [], historico: [] })).toBe(0);
