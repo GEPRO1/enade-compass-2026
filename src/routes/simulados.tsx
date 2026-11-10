@@ -92,7 +92,7 @@ function Simulados() {
         {timer && <Badge variant={left < 60 ? "destructive" : "outline"} className="tabular-nums"><Timer className="mr-1 h-3 w-3" />{Math.floor(left / 60)}:{String(left % 60).padStart(2, "0")}</Badge>}
       </div>
       <Card><CardContent className="space-y-4 p-6">
-        <div className="flex gap-2"><Badge variant="secondary">{q.eixo}</Badge><Badge variant="outline">{q.competencia}</Badge></div>
+        <div className="flex flex-wrap gap-2"><Badge variant="secondary">{q.eixo}</Badge><Badge variant="outline">{q.competencia}</Badge>{q.fonte && <Badge variant="outline" className="border-success text-success">{q.fonte}</Badge>}</div>
         <p className="text-lg leading-relaxed">{q.enunciado}</p>
         <div className="space-y-2">
           {q.alternativas.map((alt, k) => {
