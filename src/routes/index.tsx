@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { nav } from "@/components/AppShell";
-import { ENADE_DATE, checklist, eixos } from "@/lib/content";
+import { ENADE_DATE, ENADE_EXAM_LABEL, checklist, eixos } from "@/lib/content";
 import { overallPercent, useProgress } from "@/lib/progress";
 
 export const Route = createFileRoute("/")({
@@ -52,7 +52,7 @@ function Index() {
             </div>
           ))}
         </div>
-        <p className="mt-3 flex items-center gap-1 text-xs opacity-80"><Clock className="h-3 w-3" /> Até 22/11/2026, 13:00 (Brasília) — fechamento dos portões</p>
+        <p className="mt-3 flex items-center gap-1 text-xs opacity-80"><Clock className="h-3 w-3" /> Prova: {ENADE_EXAM_LABEL} — a contagem encerra 1 h antes, às 11:00</p>
       </section>
 
       <Card>
