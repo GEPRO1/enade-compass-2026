@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const ALARM_KEY = "enade-a
+const ALARM_KEY = "enade-alarm-on";
 export const ALARM_MESSAGE = "11:00 — hora de entrar no local de prova";
 
 function playAlarmTone() {
