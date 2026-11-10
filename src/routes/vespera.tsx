@@ -28,8 +28,8 @@ function Vespera() {
       <div className="mb-6 flex gap-4 rounded-xl border-2 border-destructive/40 bg-destructive/10 p-5">
         <AlertTriangle className="h-8 w-8 shrink-0 text-destructive" />
         <div>
-          <p className="font-display text-lg font-semibold">Portões fecham às 13:00 (horário de Brasília)</p>
-          <p className="text-sm text-muted-foreground">Não há tolerância. Se você mora em outro fuso, ajuste o relógio. Planeje chegar com pelo menos 1 hora de antecedência.</p>
+          <p className="font-display text-lg font-semibold">Prova às 12:00 — chegue até as 11:00</p>
+          <p className="text-sm text-muted-foreground">Não há tolerância a atrasos. O alarme do app toca às 11:00 (horário de Brasília), 1 h antes da prova. Planeje o trajeto para já estar dentro do local de prova nesse horário.</p>
         </div>
       </div>
       <div className="mb-4 flex items-center gap-3"><Progress value={(p.checklist.length / checklist.length) * 100} /><span className="text-sm tabular-nums">{p.checklist.length}/{checklist.length}</span></div>
