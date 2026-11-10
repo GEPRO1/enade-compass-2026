@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { overallPercent } from "@/lib/progress";
-import { checklist, eixos } from "@/lib/content";
+import { checklist, eixos, ENADE_DATE, ENADE_EXAM_LABEL } from "@/lib/content";
+
+describe("ENADE date", () => {
+  it("is the exam day 29/11/2026 at 12:00 Brasília", () => {
+    expect(ENADE_EXAM_LABEL).toBe("29/11/2026, 12:00 (Brasília)");
+    expect(new Date("2026-11-29T12:00:00-03:00").getTime() - new Date(ENADE_DATE).getTime()).toBe(3600000);
+  });
+});
 
 describe("overallPercent", () => {
   it("is 0 with nothing done", () => {
