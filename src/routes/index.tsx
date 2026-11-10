@@ -98,17 +98,22 @@ function Index() {
     fireAlarm();
   }, [c?.over]);
 
-  async function armAlarm() {
+  function armAlarm() {
     try {
-      if (typeof Notification !== "undefined" && Notification.permission === "default") {
-        await Notification.requestPermission();
-      }
+      localStorage.setItem(ALARM_KEY, "on");
     } catch {
-      /* permissão negada */
+      /* armazenamento indisponível */
     }
-    localStorage.setItem(ALARM_KEY, "on");
     setAlarmOn(true);
     playAlarmTone();
+    // notificações são opcionais: pedimos em segundo plano para não travar o alarme
+    if (typeof Notification !== "undefined" && Notification.permission === "default") {
+      try {
+        void Notification.requestPermission();
+      } catch {
+        /* permissão indisponível */
+      }
+    }
   }
 
   return (
