@@ -20,6 +20,13 @@ export const Route = createFileRoute("/trilhas")({
   component: Trilhas,
 });
 
+function resolveImgSrc(src: string) {
+  if (src.startsWith("http") || src.startsWith("data:") || src.startsWith(import.meta.env.BASE_URL)) {
+    return src;
+  }
+  return `${import.meta.env.BASE_URL}${src.replace(/^\//, "")}`;
+}
+
 function Trilhas() {
   const p = useProgress();
   return (
@@ -27,6 +34,9 @@ function Trilhas() {
       <PageTitle kicker="Portaria INEP nº 154/2026" title="Trilhas de conhecimento" desc="Os 12 objetos em 4 eixos integrados. Marque cada eixo como estudado." />
       {eixos.map((e) => {
         const done = p.eixos.includes(e.id);
+        const eixoImg = (e as { imagem?: string }).imagem;
+        const eixoLegenda = (e as { legenda?: string }).legenda;
+
         return (
           <Card key={e.id} id={e.id} className="scroll-mt-20">
             <CardContent className="p-6">
@@ -41,14 +51,54 @@ function Trilhas() {
                   {done ? <CheckCircle2 className="h-4 w-4" /> : <Circle className="h-4 w-4" />} {done ? "Estudado" : "Marcar estudado"}
                 </Button>
               </div>
+
+              {eixoImg && (
+                <figure className="mt-5 rounded-xl border border-border bg-muted/30 p-3 sm:p-4">
+                  <img
+                    src={resolveImgSrc(eixoImg)}
+                    alt={eixoLegenda || e.titulo}
+                    loading="lazy"
+                    className="mx-auto max-h-96 w-auto rounded-lg object-contain"
+                  />
+                  {eixoLegenda && (
+                    <figcaption className="mt-2.5 text-center text-xs text-muted-foreground">
+                      {eixoLegenda}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
               <Accordion type="multiple" className="mt-4">
-                {e.topicos.map((t) => (
-                  <AccordionItem key={t.nome} value={t.nome}>
-                    <AccordionTrigger className="font-medium">{t.nome}</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">{t.texto}</AccordionContent>
-                  </AccordionItem>
-                ))}
+                {e.topicos.map((t) => {
+                  const topicoImg = (t as { imagem?: string }).imagem;
+                  const topicoLegenda = (t as { legenda?: string }).legenda;
+
+                  return (
+                    <AccordionItem key={t.nome} value={t.nome}>
+                      <AccordionTrigger className="font-medium">{t.nome}</AccordionTrigger>
+                      <AccordionContent className="space-y-3 text-muted-foreground">
+                        <p>{t.texto}</p>
+                        {topicoImg && (
+                          <figure className="rounded-xl border border-border bg-muted/30 p-3">
+                            <img
+                              src={resolveImgSrc(topicoImg)}
+                              alt={topicoLegenda || t.nome}
+                              loading="lazy"
+                              className="mx-auto max-h-80 w-auto rounded-lg object-contain"
+                            />
+                            {topicoLegenda && (
+                              <figcaption className="mt-2 text-center text-xs text-muted-foreground">
+                                {topicoLegenda}
+                              </figcaption>
+                            )}
+                          </figure>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
               </Accordion>
+
               <div className="mt-4 flex flex-wrap gap-2">
                 <span className="text-xs font-semibold uppercase tracking-wider text-secondary">Fontes clássicas:</span>
                 {e.fontes.map((f) => <Badge key={f} variant="outline" className="font-normal">{f}</Badge>)}
