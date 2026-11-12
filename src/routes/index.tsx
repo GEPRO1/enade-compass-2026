@@ -1,3 +1,5 @@
+import ufcLogo from "@/assets/logo-ufc-russas.png.asset.json";
+import geproLogo from "@/assets/logo-gepro.png.asset.json";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Bell, BellRing, BookOpen, Clock } from "lucide-react";
@@ -119,10 +121,15 @@ function Index() {
   return (
     <div className="space-y-6">
       <section className="bg-hero overflow-hidden rounded-2xl p-6 text-primary-foreground md:p-10">
+        <div className="mb-4 inline-flex items-center gap-4 rounded-xl bg-card px-4 py-2 shadow">
+          <img src={ufcLogo.url} alt="Universidade Federal do Ceará – Campus de Russas" className="h-12 w-auto md:h-14" />
+          <span className="h-10 w-px bg-border" />
+          <img src={geproLogo.url} alt="GEPRO – Laboratório de Gestão da Produção" className="h-9 w-auto md:h-11" />
+        </div>
         <p className="text-xs font-semibold uppercase tracking-widest opacity-80">UFC · Campus Russas · GEPRO</p>
         <h1 className="mt-2 max-w-2xl font-display text-3xl font-semibold leading-tight md:text-5xl">Aprenda a gabaritar o ENADE sem enrolação</h1>
         <p className="mt-3 max-w-xl opacity-90">Formação Geral em Engenharia de Produção — a cartilha de Marcela Costa Araújo, Érica Freire da Silva e Emerson Rodrigues Sabino, agora interativa.</p>
-        <a href="https://github.com/geproufc/enade/blob/main/ebook_1enade2026.pdf" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center rounded-lg bg-background/15 px-4 py-2 text-sm font-semibold backdrop-blur hover:bg-background/25">📘 Ler a cartilha completa (PDF)</a>
+        <a href="https://github.com/geproufc/enade/blob/main/ebook_1enade2026.pdf" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center rounded-lg bg-background px-5 py-2.5 text-sm font-bold text-primary shadow-lg ring-2 ring-background/60 transition hover:scale-[1.02] hover:bg-accent">📘 Ler a cartilha completa (PDF)</a>
         <p className="mt-5 font-display text-lg italic opacity-95">“O básico bem feito é o que funciona. Leia com propósito, argumente com evidência.”</p>
         <div className="mt-6 grid max-w-md grid-cols-4 gap-2">
           {(["d", "h", "m", "s"] as const).map((k) => (
