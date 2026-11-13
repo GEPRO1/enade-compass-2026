@@ -37,18 +37,29 @@ jobs:
       - name: Preparar arquivos estáticos para GitHub Pages
         run: |
           mkdir -p gh-pages-dist
-          if [ -f ".output/public/index.html" ]; then
-            cp -r .output/public/* gh-pages-dist/
-          elif [ -f "dist/client/index.html" ]; then
-            cp -r dist/client/* gh-pages-dist/
-          elif [ -f "dist/index.html" ]; then
-            cp -r dist/* gh-pages-dist/
+          FOUND_DIR=""
+          for dir in ".output/public" "dist/client" "dist/public" "dist"; do
+            if [ -f "$dir/index.html" ] || [ -f "$dir/_shell.html" ]; then
+              FOUND_DIR="$dir"
+              break
+            fi
+          done
+
+          if [ -n "$FOUND_DIR" ]; then
+            echo "Arquivos estáticos encontrados em: $FOUND_DIR"
+            cp -r "$FOUND_DIR"/* gh-pages-dist/
+            if [ ! -f "gh-pages-dist/index.html" ] && [ -f "gh-pages-dist/_shell.html" ]; then
+              cp gh-pages-dist/_shell.html gh-pages-dist/index.html
+            fi
+            if [ -d "public" ]; then
+              cp -rn public/* gh-pages-dist/ 2>/dev/null || true
+            fi
+            cp gh-pages-dist/index.html gh-pages-dist/404.html
           else
-            echo "Estrutura gerada:"
-            find . -maxdepth 3 -not -path '*/node_modules/*'
+            echo "Estrutura gerada em dist e .output:"
+            find dist .output -maxdepth 4 2>/dev/null || true
             exit 1
           fi
-          cp gh-pages-dist/index.html gh-pages-dist/404.html
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v4
