@@ -44,25 +44,50 @@ export const argumentacao = [
 ];
 
 export type Eixo = {
-  id: string; numero: string; titulo: string; objetos: string; cor: string;
-  resumo: string; topicos: { nome: string; texto: string }[]; fontes: string[];
+  id: string;
+  numero: string;
+  titulo: string;
+  objetos: string;
+  cor: string;
+  resumo: string;
+  imagem?: string;
+  legenda?: string;
+  topicos: { nome: string; texto: string; imagem?: string; legenda?: string }[];
+  fontes: string[];
 };
 
 export const eixos: Eixo[] = [
   {
-    id: "eixo-1", numero: "I", titulo: "Socioambiental, Clima e Território", objetos: "Objetos IV, IX e X", cor: "secondary",
+    id: "eixo-1",
+    numero: "I",
+    titulo: "Socioambiental, Clima e Território",
+    objetos: "Objetos IV, IX e X",
+    cor: "secondary",
     resumo: "Integra mudanças climáticas, qualidade de vida urbana e rural e diversidade territorial.",
+    imagem: "figuras/eixo1clima.jpg",
+    legenda: "Figura 10: Eixo I: Socioambiental, Clima e Território (Fonte: GEPRO, 2026).",
     topicos: [
       { nome: "Mudanças climáticas", texto: "Aquecimento global causado por emissões de gases de efeito estufa. A Engenharia de Produção atua na eficiência energética, descarbonização de processos e inventário de emissões." },
       { nome: "Justiça climática", texto: "Os impactos climáticos atingem de forma desigual populações vulneráveis, que menos contribuíram para o problema. Políticas de adaptação devem priorizar esses grupos." },
       { nome: "Mobilidade ativa", texto: "Deslocamentos a pé e de bicicleta. Reduz emissões, melhora a saúde e democratiza o espaço urbano. Base legal: Política Nacional de Mobilidade Urbana (Lei 12.587/2012)." },
-      { nome: "ODS 11 e direito à cidade", texto: "Cidades e comunidades sustentáveis: acesso a moradia, transporte, espaços públicos e resiliência a desastres. Direito à cidade = usufruto equitativo do espaço urbano." },
+      {
+        nome: "ODS 11 e direito à cidade",
+        texto: "Cidades e comunidades sustentáveis: acesso a moradia, transporte, espaços públicos e resiliência a desastres. Direito à cidade = usufruto equitativo do espaço urbano.",
+        imagem: "figuras/eixo1socio.png",
+        legenda: "Figura 14: Eixo I: Socioambiental, Clima e Território – mobilidade e direito à cidade (Fonte: GEPRO, 2026).",
+      },
     ],
     fontes: ["Acordo de Paris", "Relatórios do IPCC", "Estatuto da Cidade (Lei 10.257/2001)", "Agenda 2030 – ODS 11 e 13"],
   },
   {
-    id: "eixo-2", numero: "II", titulo: "Direitos, Equidade e Inclusão", objetos: "Objetos I, V e XI", cor: "primary",
+    id: "eixo-2",
+    numero: "II",
+    titulo: "Direitos, Equidade e Inclusão",
+    objetos: "Objetos I, V e XI",
+    cor: "primary",
     resumo: "Ética, democracia, direitos humanos, equidade étnico-racial, geracional e de gênero, e acessibilidade.",
+    imagem: "figuras/eixo2.png",
+    legenda: "Figura 11: Eixo II: Direitos, Equidade e Inclusão (Fonte: GEPRO, 2026).",
     topicos: [
       { nome: "Direitos humanos", texto: "Universais, indivisíveis e inalienáveis (Declaração Universal de 1948). Toda proposta de intervenção no ENADE deve respeitá-los." },
       { nome: "Ações afirmativas", texto: "Políticas temporárias para corrigir desigualdades históricas, como a Lei de Cotas (Lei 12.711/2012). Equidade ≠ igualdade: tratar desigualmente os desiguais." },
@@ -72,8 +97,14 @@ export const eixos: Eixo[] = [
     fontes: ["Constituição Federal de 1988", "Declaração Universal dos Direitos Humanos", "LBI (Lei 13.146/2015) e eMAG", "Estatuto da Igualdade Racial"],
   },
   {
-    id: "eixo-3", numero: "III", titulo: "Trabalho, Saúde e Estado", objetos: "Objetos II, III e XII", cor: "warning",
+    id: "eixo-3",
+    numero: "III",
+    titulo: "Trabalho, Saúde e Estado",
+    objetos: "Objetos II, III e XII",
+    cor: "warning",
     resumo: "Estado, sociedade e trabalho; educação cidadã; saúde ocupacional e bem-estar.",
+    imagem: "figuras/eixo23.jpg",
+    legenda: "Figura 12: Eixo III – Saúde, trabalho e Estado e Eixo IV – Inovação, Globalização e Tecnologia (Fonte: GEPRO, 2026).",
     topicos: [
       { nome: "Uberização", texto: "Trabalho mediado por plataformas digitais, com gestão algorítmica, ausência de vínculo e transferência de riscos ao trabalhador. Gera precarização e jornadas extensas." },
       { nome: "NR-17 – Ergonomia", texto: "Norma Regulamentadora que estabelece parâmetros para adaptar as condições de trabalho às características psicofisiológicas dos trabalhadores, incluindo organização do trabalho e Análise Ergonômica do Trabalho (AET)." },
@@ -83,8 +114,14 @@ export const eixos: Eixo[] = [
     fontes: ["NR-17 (Ministério do Trabalho)", "CID-11 / OMS", "CLT", "Constituição Federal – arts. 6º e 7º"],
   },
   {
-    id: "eixo-4", numero: "IV", titulo: "Inovação, Globalização e Tecnologia", objetos: "Objetos VI, VII e VIII", cor: "chart-4",
+    id: "eixo-4",
+    numero: "IV",
+    titulo: "Inovação, Globalização e Tecnologia",
+    objetos: "Objetos VI, VII e VIII",
+    cor: "chart-4",
     resumo: "Cultura e comunicação, ciência, tecnologia e IA, e relações internacionais.",
+    imagem: "figuras/eixo4inova.png",
+    legenda: "Figura 13: Eixo IV: Inovação, Globalização e Tecnologia (Fonte: GEPRO, 2026).",
     topicos: [
       { nome: "Governança de IA", texto: "Conjunto de princípios e regras para uso ético da inteligência artificial: transparência, explicabilidade, responsabilização e supervisão humana." },
       { nome: "LGPD", texto: "Lei Geral de Proteção de Dados (Lei 13.709/2018): regula o tratamento de dados pessoais, exige base legal, finalidade e consentimento, e garante direitos ao titular. Fiscalizada pela ANPD." },
@@ -109,6 +146,25 @@ export const objetos = [
   "XI. Acessibilidade e Inclusão Social",
   "XII. Saúde e Bem-Estar",
 ];
+
+export const figurasEsg = {
+  matrizEsg: {
+    imagem: "figuras/esg.jpg",
+    legenda: "Figura 15: ESG – Environmental, Social, and Governance (Fonte: GEPRO, 2026).",
+  },
+  tripleBottomLine: {
+    imagem: "figuras/dimensoes.png",
+    legenda: "Figura 16: Dimensões Econômica, Social e Ambiental — Triple Bottom Line (Fonte: GEPRO, 2026).",
+  },
+  economiaCircular: {
+    imagem: "figuras/economiacircular.png",
+    legenda: "Figura 17: Estratégias simplificadas da economia circular (Fonte: GEPRO, 2026).",
+  },
+  odsEnade: {
+    imagem: "figuras/ods.png",
+    legenda: "Figura 18: Exemplos de ODS que podem ser citadas na avaliação ENADE (Fonte: GEPRO, 2026).",
+  },
+};
 
 export const esg = [
   { letra: "E", nome: "Environmental (Ambiental)", objetos: [3, 8, 9], itens: ["Emissões e eficiência energética", "Gestão de resíduos e logística reversa", "Uso de água e recursos naturais"] },
